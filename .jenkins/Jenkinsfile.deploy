@@ -1,0 +1,48 @@
+pipeline {
+    agent {
+        docker {
+            image "registry.firstdark.dev/java17:latest"
+            alwaysPull true
+        }
+    }
+
+    stages {
+        stage("Notify Discord") {
+            steps {
+                discordSend webhookURL: env.FDD_WH_ADMIN,
+                        title: "Deploy Started: CraterLib 1.19.3/4 Deploy #${BUILD_NUMBER}",
+                        link: env.BUILD_URL,
+                        result: 'SUCCESS',
+                        description: "Build: [${BUILD_NUMBER}](${env.BUILD_URL})"
+            }
+        }
+        stage("Prepare") {
+            steps {
+                sh "chmod +x ./gradlew"
+                sh "./gradlew clean"
+            }
+        }
+        stage("Publish to Modrinth/Curseforge") {
+            steps {
+                sh "./gradlew publishMod -Prelease=true"
+            }
+        }
+        stage("Publish to Maven") {
+            steps {
+                sh "./gradlew publish -Prelease=true"
+            }
+        }
+    }
+    post {
+        always {
+            sh "./gradlew --stop"
+            deleteDir()
+
+            discordSend webhookURL: env.FDD_WH_ADMIN,
+                    title: "CraterLib Port 1.19.3/4 #${BUILD_NUMBER}",
+                    link: env.BUILD_URL,
+                    result: currentBuild.currentResult,
+                    description: "Build: [${BUILD_NUMBER}](${env.BUILD_URL})\nStatus: ${currentBuild.currentResult}"
+        }
+    }
+}
