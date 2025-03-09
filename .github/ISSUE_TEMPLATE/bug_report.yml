@@ -12,7 +12,7 @@ body:
     attributes:
       label: "🐞 Please provide a detailed description of the bug you are experiencing"
       description: "The more details, the better"
-      placeholder: ""
+      placeholder: "When I launch my game, it sold my kidney on Facebook Marketplace.... etc"
     validations:
       required: true
 
