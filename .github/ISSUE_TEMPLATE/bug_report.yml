@@ -3,9 +3,45 @@ description: Report a bug or unexpected behavior
 title: "[Bug]: "
 labels: ["Type: Bug"]
 body:
-  - type: textarea
+  - type: markdown
     attributes:
       value: "## 🐞 Bug Report\nPlease provide a clear description of the issue."
+
+  - type: textarea
+    id: description
+    attributes:
+      label: "🐞 Please provide a detailed description of the bug you are experiencing"
+      description: "The more details, the better"
+      placeholder: ""
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduction_steps
+    attributes:
+      label: "🔄 Steps to reproduce"
+      description: "List the steps to reproduce this bug."
+      placeholder: "1. Do this... 2. Click that... 3. See error"
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected_behavior
+    attributes:
+      label: "✅ Expected behavior"
+      description: "What should have happened?"
+      placeholder: "I expected that..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual_behavior
+    attributes:
+      label: "❌ Actual behavior"
+      description: "What actually happened?"
+      placeholder: "Instead, I saw..."
+    validations:
+      required: true
 
   - type: input
     id: minecraft_version
@@ -54,33 +90,6 @@ body:
       label: "📚 CraterLib Version"
       description: "Which version of CraterLib are you using?"
       placeholder: "e.g., 1.5.2"
-    validations:
-      required: true
-
-  - type: textarea
-    id: reproduction_steps
-    attributes:
-      label: "🔄 Steps to reproduce"
-      description: "List the steps to reproduce this bug."
-      placeholder: "1. Do this... 2. Click that... 3. See error"
-    validations:
-      required: true
-
-  - type: textarea
-    id: expected_behavior
-    attributes:
-      label: "✅ Expected behavior"
-      description: "What should have happened?"
-      placeholder: "I expected that..."
-    validations:
-      required: true
-
-  - type: textarea
-    id: actual_behavior
-    attributes:
-      label: "❌ Actual behavior"
-      description: "What actually happened?"
-      placeholder: "Instead, I saw..."
     validations:
       required: true
 
