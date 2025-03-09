@@ -3,7 +3,7 @@ description: Report a bug or unexpected behavior
 title: "[Bug]: "
 labels: ["Type: Bug"]
 body:
-  - type: markdown
+  - type: textarea
     attributes:
       value: "## 🐞 Bug Report\nPlease provide a clear description of the issue."
 
